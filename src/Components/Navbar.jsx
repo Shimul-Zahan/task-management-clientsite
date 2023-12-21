@@ -19,8 +19,8 @@ const Navbar = () => {
             link: '/contact'
         },
         {
-            navMenu: 'Bla Bla bla',
-            link: '/bla'
+            navMenu: 'dashboard',
+            link: '/dashboard'
         },
     ]
 
