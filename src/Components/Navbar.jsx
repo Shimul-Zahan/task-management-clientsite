@@ -40,7 +40,7 @@ const Navbar = () => {
                         )
                     }
                     <button>
-                        <Link className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
+                        <Link to='/login' className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
                     </button>
                 </div>
                 <div className={`absolute px-4 lg:hidden duration-700 top-10 list-none space-y-5 w-full bg-green-500 py-6 ${showMenu? 'left-0':'left-[-100%]'}`}>
@@ -52,7 +52,7 @@ const Navbar = () => {
                         )
                     }
                     <button>
-                        <Link className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
+                        <Link to='/login' className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
                     </button>
                 </div>
             </div>

@@ -1,12 +1,13 @@
 import {
     createBrowserRouter,
-    RouterProvider,
 } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Page/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Profile from "../Components/Profile";
 import AddTask from "../Components/addTask";
+import Login from "../Page/Login";
+import Registration from "../Page/Registration";
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,15 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
-            }
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/register',
+                element: <Registration />
+            },
         ]
     },
     {
