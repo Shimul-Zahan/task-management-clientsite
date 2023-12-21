@@ -18,12 +18,12 @@ const DesktoNav = () => {
                             </Link>
                         </li>
                         <li className='border-t'>
-                            <Link to='/dashboard' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
+                            <Link to='/dashboard/profile' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
                                 Profile
                             </Link>
                         </li>
                         <li className='border-t'>
-                            <Link to='/dashboard' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
+                            <Link to='/dashboard/add-task' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
                                 Add Task
                             </Link>
                         </li>
