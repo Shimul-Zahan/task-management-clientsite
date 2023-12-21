@@ -28,7 +28,6 @@ const PreviousTask = () => {
                 <div className='space-y-3 text-center border border-black'>
                     <h1 className='bg-green-500 text-xl py-3'>Completed</h1>
                     <ul className='space-y-3 text-lg'>
-                        
                     </ul>
                 </div>
             </div>
