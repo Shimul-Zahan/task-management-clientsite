@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios';
+import { MyAuthContext } from '../Context/AuthContext';
 
 const getAllTasks = () => {
 
+    const { user, loading } = useContext(MyAuthContext);
+
     const { data, isLoading, refetch } = useQuery({
-        queryKey: ['all-tasks'],
+        queryKey: ['all-tasks', user?.email],
+        enabled: !!user?.email,
         queryFn: async () => {
             const res = await axios.get('http://localhost:5000/all-task');
             return res.data;

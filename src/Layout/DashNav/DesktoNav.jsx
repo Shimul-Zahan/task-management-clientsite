@@ -28,7 +28,7 @@ const DesktoNav = () => {
                             </Link>
                         </li>
                         <li className='border-y'>
-                            <Link to='/dashboard' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
+                            <Link to='/dashboard/all-task' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
                                 Previous Task
                             </Link>
                         </li>

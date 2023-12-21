@@ -8,6 +8,7 @@ import Profile from "../Components/Profile";
 import AddTask from "../Components/addTask";
 import Login from "../Page/Login";
 import Registration from "../Page/Registration";
+import PreviousTask from "../Components/PreviousTask";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/profile',
                 element: <Profile />
+            },
+            {
+                path: '/dashboard/all-task',
+                element: <PreviousTask />
             },
         ]
     }

@@ -53,9 +53,9 @@ const AddTask = () => {
                             </div>
                             <select className="select select-bordered" {...register("priority")}>
                                 <option disabled selected>Priority</option>
-                                <option value="female">female</option>
-                                <option value="male">male</option>
-                                <option value="other">other</option>
+                                <option value="low">Low</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="high">High</option>
                             </select>
                         </label>
                     </div>
