@@ -1,14 +1,27 @@
+import axios from "axios"
+import { useContext } from "react"
 import { useForm } from "react-hook-form"
+import { MyAuthContext } from "../Context/AuthContext"
 
 const AddTask = () => {
+
+    const { user } = useContext(MyAuthContext);
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
-        console.log(data)   
+    const onSubmit = async (data) => {
+        const task = {
+            ...data,
+            email: user?.email,
+        }
+        console.log(task)
+        const res = await axios.post('http://localhost:5000/add-task', task);
+        const ack = res.data;
+        console.log(ack);
     }
 
 

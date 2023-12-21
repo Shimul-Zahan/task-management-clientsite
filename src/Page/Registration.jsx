@@ -31,7 +31,7 @@ const Registration = () => {
                     }
                     userDataPost(userInfo)
                         .then(res => {
-                            console.log(res.data)
+                            console.log('success')
                             navigate('/');
                         })
                 }).catch(err => {
@@ -50,7 +50,7 @@ const Registration = () => {
                     name: res.user?.displayName,
                     email: res.user?.email
                 }
-                console.log(userInfo)
+                console.log('successfull')
             })
             .catch(err => setError(err.message.slice(10, 100)))
     }
