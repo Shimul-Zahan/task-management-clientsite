@@ -17,6 +17,7 @@ const AddTask = () => {
         const task = {
             ...data,
             email: user?.email,
+            status: 'todo',
         }
         console.log(task)
         const res = await axios.post('http://localhost:5000/add-task', task);

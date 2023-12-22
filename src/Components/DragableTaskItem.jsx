@@ -14,6 +14,7 @@ const DragableTaskItem = ({ task, onRefetch }) => {
         }),
     }));
 
+
     return (
         <li ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }} className="mb-2 bg-white rounded-md">
             {/* Your task item content goes here */}
