@@ -3,6 +3,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import image1 from '../assets/icon/banker.png'
+import image2 from '../assets/icon//businessman.png'
+import image3 from '../assets/icon/freelance.png'
+import image4 from '../assets/icon/graduated.png'
+import image5 from '../assets/icon/shopping-online.png'
+import image6 from '../assets/icon/work-from-home.png'
 
 export default function Slider() {
     return (
@@ -37,28 +43,46 @@ export default function Slider() {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src="https://preview.redd.it/i-got-bored-so-i-decided-to-draw-a-random-image-on-the-v0-4ig97vv85vjb1.png?width=1280&format=png&auto=webp&s=7177756d1f393b6e093596d06e1ba539f723264b" alt="" className='h-[400px] w-full' />
+                    <div className='bg-[#001D4F] text-white h-[350px] rounded-lg hover:scale-[1.1] p-10 flex flex-col justify-center items-center gap-5'>
+                        <img src={image1} alt="" className='h-20 w-20 rounded-full bg-white' />
+                        <h1 className='text-2xl font-bold'>Bankers</h1>
+                        <h1 className='text-xl'>Track project progress, assign tasks, and collaborate with teams effectively.</h1>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://cdn.pixabay.com/photo/2016/07/07/16/46/dice-1502706_640.jpg" alt="" className='h-[400px] w-full' />
+                    <div className='bg-[#001D4F] text-white h-[350px] rounded-lg hover:scale-[1.1] p-10 flex flex-col justify-center items-center gap-5'>
+                        <img src={image2} alt="" className='h-20 w-20 rounded-full bg-white' />
+                        <h1 className='text-2xl font-bold'>Project Managers</h1>
+                        <h1 className='text-xl'>Track project progress, assign tasks, and collaborate with teams effectively.</h1>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbXxlbnwwfHwwfHx8MA%3D%3D" alt="" className='h-[400px] w-full' />
+                    <div className='bg-[#001D4F] text-white h-[350px] rounded-lg hover:scale-[1.1] p-10 flex flex-col justify-center items-center gap-5'>
+                        <img src={image3} alt="" className='h-20 w-20 rounded-full bg-white' />
+                        <h1 className='text-2xl font-bold'>Freelancar</h1>
+                        <h1 className='text-xl'>Manage multiple projects, track billable hours, and meet client deadlines.</h1>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://images.pexels.com/photos/3844788/pexels-photo-3844788.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" className='h-[400px] w-full' />
+                    <div className='bg-[#001D4F] text-white h-[350px] rounded-lg hover:scale-[1.1] p-10 flex flex-col justify-center items-center gap-5'>
+                        <img src={image4} alt="" className='h-20 w-20 rounded-full bg-white' />
+                        <h1 className='text-2xl font-bold'>Students</h1>
+                        <h1 className='text-xl'>Plan assignments, study schedules, and stay organized for academic success.</h1>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://preview.redd.it/i-got-bored-so-i-decided-to-draw-a-random-image-on-the-v0-4ig97vv85vjb1.png?width=1280&format=png&auto=webp&s=7177756d1f393b6e093596d06e1ba539f723264b" alt="" className='h-[400px] w-full' />
+                    <div className='bg-[#001D4F] text-white h-[350px] rounded-lg hover:scale-[1.1] p-10 flex flex-col justify-center items-center gap-5'>
+                        <img src={image5} alt="" className='h-20 w-20 rounded-full bg-white' />
+                        <h1 className='text-2xl font-bold'>Small Business Owners</h1>
+                        <h1 className='text-xl'>Delegate tasks, track team productivity, and streamline operations..</h1>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://cdn.pixabay.com/photo/2016/07/07/16/46/dice-1502706_640.jpg" alt="" className='h-[400px] w-full' />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbXxlbnwwfHwwfHx8MA%3D%3D" alt="" className='h-[400px] w-full' />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://images.pexels.com/photos/3844788/pexels-photo-3844788.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" className='h-[400px] w-full' />
+                    <div className='bg-[#001D4F] text-white h-[350px] rounded-lg hover:scale-[1.1] p-10 flex flex-col justify-center items-center gap-5'>
+                        <img src={image6} alt="" className='h-20 w-20 rounded-full bg-white' />
+                        <h1 className='text-2xl font-bold'>Contractor</h1>
+                        <h1 className='text-xl'>Track project progress, assign tasks, and collaborate with teams effectively.</h1>
+                    </div>
                 </SwiperSlide>
             </Swiper>
         </>

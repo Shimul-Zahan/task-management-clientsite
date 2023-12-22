@@ -13,11 +13,6 @@ const DesktoNav = () => {
 
                     <ul className="mt-10 space-y-2">
                         <li className='border-t'>
-                            <Link to='/dashboard' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
-                                Home
-                            </Link>
-                        </li>
-                        <li className='border-t'>
                             <Link to='/dashboard/profile' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
                                 Profile
                             </Link>
@@ -28,7 +23,7 @@ const DesktoNav = () => {
                             </Link>
                         </li>
                         <li className='border-y'>
-                            <Link to='/dashboard/all-task' href="" className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
+                            <Link to='/dashboard/all-task' className="block rounded-lg px-4 py-4 text-lg font-medium text-gray-700">
                                 Previous Task
                             </Link>
                         </li>
@@ -36,7 +31,12 @@ const DesktoNav = () => {
                 </div>
 
                 <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
-                    <a href="#" className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
+                    <li className='border-y flex justify-start px-6 items-center'>
+                        <Link to='/' className="block rounded-lg py-4 text-center text-lg font-medium text-gray-700">
+                            Home
+                        </Link>
+                    </li>
+                    <div href="#" className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
                         <img
                             alt="Man"
                             src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -50,7 +50,7 @@ const DesktoNav = () => {
                                 <span> eric@frusciante.com </span>
                             </p>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
