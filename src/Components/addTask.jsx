@@ -2,6 +2,7 @@ import axios from "axios"
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { MyAuthContext } from "../Context/AuthContext"
+import { toast } from "react-toastify"
 
 const AddTask = () => {
 
@@ -11,6 +12,7 @@ const AddTask = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm()
 
     const onSubmit = async (data) => {
@@ -19,10 +21,16 @@ const AddTask = () => {
             email: user?.email,
             status: 'todo',
         }
-        console.log(task)
+        // console.log(task)
         const res = await axios.post('http://localhost:5000/add-task', task);
-        const ack = res.data;
-        console.log(ack);
+        if (res.data) {
+            toast.success('Success Add to task', {
+                position: "top-right",
+                autoClose: 3000,
+                theme: "colored",
+            });
+            reset();
+        }
     }
 
 

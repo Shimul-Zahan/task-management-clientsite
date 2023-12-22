@@ -5,8 +5,11 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { MyAuthContext } from '../Context/AuthContext';
 import { useForm } from 'react-hook-form';
+import getAllTasks from '../Hooks/getAllTasks';
 
 const DragableTaskItem = ({ task, onRefetch }) => {
+
+    const { data, refetch } = getAllTasks();
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "TASK",
@@ -18,7 +21,9 @@ const DragableTaskItem = ({ task, onRefetch }) => {
 
     const handleDelete = async (id) => {
         const res = await axios.delete(`http://localhost:5000/delete/${id}`);
-        console.log(res.data)
+        if(res.data.deletedCount > 0){
+            refetch();
+        }
     }
 
     const { user } = useContext(MyAuthContext);

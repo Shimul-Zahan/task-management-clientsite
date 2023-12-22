@@ -4,6 +4,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import axios from 'axios';
 import DragableTaskItem from './DragableTaskItem';
 import getAllTasks from '../Hooks/getAllTasks';
+import { toast } from 'react-toastify';
 
 const Todo = ({ task, onRefetch }) => {
 
@@ -25,9 +26,13 @@ const Todo = ({ task, onRefetch }) => {
   ));
 
   const handleDrop = async (item) => {
-    console.log("this is item for complete", item._id); // Log the dropped item
     const res = await axios.patch(`http://localhost:5000/update/${item._id}?query=todo`);
     if (res.data.modifiedCount > 0) {
+      toast.success('Task reverse to todo', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "colored",
+      });
       refetch();
       onRefetch();
     }
@@ -36,7 +41,7 @@ const Todo = ({ task, onRefetch }) => {
 
   return (
     <div ref={drop} className={`space-y-3 text-center border border-black ${isOver ? 'bg-green-100' : ''}`}>
-      <h1 className='bg-yellow-500 text-xl py-3'>Completed</h1>
+      <h1 className='bg-yellow-500 text-xl py-3'>To Do</h1>
       <ul ref={drop} className='space-y-3 text-lg'>
         {
           data?.map(task =>

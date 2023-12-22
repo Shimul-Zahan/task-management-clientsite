@@ -4,6 +4,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import axios from 'axios';
 import DragableTaskItem from './DragableTaskItem';
 import getAllTasks from '../Hooks/getAllTasks';
+import { toast } from 'react-toastify';
 
 const CompleteList = ({ task, onRefetch }) => {
 
@@ -29,6 +30,11 @@ const CompleteList = ({ task, onRefetch }) => {
         console.log("this is item for complete", item._id); // Log the dropped item
         const res = await axios.patch(`http://localhost:5000/update/${item._id}?query=complete`);
         if (res.data.modifiedCount > 0) {
+            toast.success('Task reverse to complete', {
+                position: "top-right",
+                autoClose: 3000,
+                theme: "colored",
+            });
             refetch();
             onRefetch();
         }
