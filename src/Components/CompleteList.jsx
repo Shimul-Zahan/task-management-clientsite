@@ -27,7 +27,6 @@ const CompleteList = ({ task, onRefetch }) => {
     ));
 
     const handleDrop = async (item) => {
-        console.log("this is item for complete", item._id); // Log the dropped item
         const res = await axios.patch(`http://localhost:5000/update/${item._id}?query=complete`);
         if (res.data.modifiedCount > 0) {
             toast.success('Task reverse to complete', {

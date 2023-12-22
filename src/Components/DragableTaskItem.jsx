@@ -6,10 +6,26 @@ import { MdDelete } from "react-icons/md";
 import { MyAuthContext } from '../Context/AuthContext';
 import { useForm } from 'react-hook-form';
 import getAllTasks from '../Hooks/getAllTasks';
+import Swal from 'sweetalert2'
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import { toast } from 'react-toastify';
 
-const DragableTaskItem = ({ task, onRefetch }) => {
+const DragableTaskItem = ({ task }) => {
 
     const { data, refetch } = getAllTasks();
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "TASK",
@@ -20,14 +36,41 @@ const DragableTaskItem = ({ task, onRefetch }) => {
     }));
 
     const handleDelete = async (id) => {
-        const res = await axios.delete(`http://localhost:5000/delete/${id}`);
-        if(res.data.deletedCount > 0){
-            refetch();
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axios.delete(`http://localhost:5000/delete/${id}`);
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    refetch();
+                }
+            }
+        });
     }
 
     const { user } = useContext(MyAuthContext);
-    const [showData, setData] = useState('');
+    const [open, setOpen] = React.useState(false);
+    const [id, setId] = useState(null);
+
+    const handleOpen = (id) => {
+        setOpen(true)
+        setId(id);
+    };
+    const handleClose = () => {
+        setOpen(false)
+        setId(id);
+    };
 
     const {
         register,
@@ -41,17 +84,21 @@ const DragableTaskItem = ({ task, onRefetch }) => {
             email: user?.email,
             status: 'todo',
         }
-        console.log(task)
-        const res = await axios.post('http://localhost:5000/add-task', task);
-        const ack = res.data;
-        console.log(ack);
+        console.log("in the update modal", task)
+        const res = await axios.patch(`http://localhost:5000/edit-task/${id}`, task);
+        if (res.data.modifiedCount > 0) {
+            toast.success('Task edited successfully!!!', {
+                position: "top-right",
+                autoClose: 3000,
+                theme: "colored",
+            });
+            setOpen(false)
+            setId(id);
+            refetch();
+        }
     }
 
-    const handleModal = (data) => {
-        // console.log(data);
-        // setData(data)
-        document.getElementById('my_modal_3').showModal()
-    }
+    console.log(id);
 
 
     return (
@@ -71,17 +118,18 @@ const DragableTaskItem = ({ task, onRefetch }) => {
                     </p>
 
                     <div className="flex justify-end gap-5">
-                        <FaEdit onClick={() => handleModal(task)} className="text-[20px] text-indigo-600 hover:text-green-500 cursor-pointer" />
+                        <FaEdit onClick={() => handleOpen(task._id)} className="text-[20px] text-indigo-600 hover:text-green-500 cursor-pointer" />
                         <MdDelete onClick={() => handleDelete(task._id)} className="text-[22px] text-indigo-600 hover:text-red-500 cursor-pointer" />
                     </div>
                 </div>
             </div>
-            {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            {/* <dialog id="my_modal_3" className="modal">
-                <div className="modal-box">
-                    <form method="dialog">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    </form>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                         <div className="flex flex-col justify-start items-center gap-3">
                             <label className="form-control w-full">
@@ -89,7 +137,7 @@ const DragableTaskItem = ({ task, onRefetch }) => {
                                     <span className="label-text">Title</span>
                                 </div>
                                 <input type="text" placeholder="Title" className="input input-bordered w-full"
-                                    defaultValue={showData?.title}
+                                    defaultValue={task.title}
                                     {...register("title", { required: true })} />
                                 {errors.exampleRequired && <span>This field is required</span>}
                             </label>
@@ -99,7 +147,7 @@ const DragableTaskItem = ({ task, onRefetch }) => {
                                     <span className="label-text">Deadline</span>
                                 </div>
                                 <input type="date" placeholder="Type here" className="input input-bordered w-full"
-                                    defaultValue={showData?.deadline}
+                                    defaultValue={task.deadline}
                                     {...register("deadline", { required: true })} />
                                 {errors.exampleRequired && <span>This field is required</span>}
                             </label>
@@ -108,9 +156,8 @@ const DragableTaskItem = ({ task, onRefetch }) => {
                                     <span className="label-text">Priority</span>
                                 </div>
                                 <select className="select select-bordered"
-                                    {...register("priority")}
-                                    defaultValue={showData?.priority}
-                                >
+                                    defaultValue={task.priority}
+                                    {...register("priority")}>
                                     <option disabled selected>Priority</option>
                                     <option value="low">Low</option>
                                     <option value="moderate">Moderate</option>
@@ -124,15 +171,15 @@ const DragableTaskItem = ({ task, onRefetch }) => {
                                 <span className="label-text">Task description</span>
                             </div>
                             <textarea
-                                defaultValue={showData?.description}
+                                defaultValue={task.description}
                                 {...register("description", { required: true })}
                                 placeholder="Description" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
                             {errors.exampleRequired && <span>This field is required</span>}
                         </label>
                         <button type="submit" className="py-2 px-8 border border-black w-full rounded-full bg-yellow-500">Submit</button>
                     </form>
-                </div>
-            </dialog> */}
+                </Box>
+            </Modal>
         </li>
     )
 }
