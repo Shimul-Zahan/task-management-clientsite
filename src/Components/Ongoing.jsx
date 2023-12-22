@@ -25,7 +25,10 @@ const Ongoing = ({ task, onRefetch }) => {
     const handleDrop = async (item) => {
         console.log("this is item for ongoing", item._id); // Log the dropped item
         const res = await axios.patch(`http://localhost:5000/update/${item._id}?query=ongoing`);
-        console.log(res.data)
+        if (res.data.modifiedCount > 0) {
+            refetch();
+            onRefetch();
+        }
     };
 
 

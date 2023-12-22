@@ -29,6 +29,7 @@ const Todo = ({ task, onRefetch }) => {
     const res = await axios.patch(`http://localhost:5000/update/${item._id}?query=todo`);
     if (res.data.modifiedCount > 0) {
       refetch();
+      onRefetch();
     }
   };
 
