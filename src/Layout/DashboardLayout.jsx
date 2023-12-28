@@ -7,14 +7,14 @@ const DashboardLayout = () => {
   return (
       <div className=''>
           <div className="grid grid-cols-6 ">
-              <div className="min-h-screen rounded-lg col-span-1">
+              <div className="h-full rounded-lg col-span-1">
                   <div>
                       <DesktoNav className="hidden lg:block" />
                       <MobileNavbar className="block lg:hidden" />
                   </div>
               </div>
 
-              <div className="min-h-screen bg-gray-100 col-span-5">
+              <div className="min-h-screen col-span-5 py-5">
                   <Outlet />
               </div>
           </div>

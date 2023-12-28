@@ -8,7 +8,10 @@ import Profile from "../Components/Profile";
 import AddTask from "../Components/addTask";
 import Login from "../Page/Login";
 import Registration from "../Page/Registration";
-import PreviousTask from "../Components/PreviousTask";
+import Contact from "../Page/Contact/Contact";
+import About from "../Page/About/About";
+import PrivateRoute from "./PrivateRoute";
+import SeePreviousTask from "../Components/SeePreviousTask";
 
 
 const router = createBrowserRouter([
@@ -25,6 +28,14 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
+                path: '/contact',
+                element: <PrivateRoute><Contact /></PrivateRoute>
+            },
+            {
+                path: '/about',
+                element: <PrivateRoute><About /></PrivateRoute>
+            },
+            {
                 path: '/register',
                 element: <Registration />
             },
@@ -32,19 +43,19 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/add-task',
-                element: <AddTask />
+                element: <PrivateRoute><AddTask /></PrivateRoute>
             },
             {
                 path: '/dashboard/profile',
-                element: <Profile />
+                element: <PrivateRoute><Profile /></PrivateRoute>
             },
             {
                 path: '/dashboard/all-task',
-                element: <PreviousTask />
+                element: <PrivateRoute><SeePreviousTask /></PrivateRoute>
             },
         ]
     }

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import icon from '../../assets/icons/group.png'
-import TitleBar from '../../Utils/TitleBar'
-import Swal from 'sweetalert2';
+// import emailjs from '@emailjs/browser';
+import icon from '../../assets/icon/graduated.png'
+// import TitleBar from '../../Utils/TitleBar'
+// import Swal from 'sweetalert2';
 
 const Contact = () => {
 
@@ -11,40 +11,33 @@ const Contact = () => {
     const sendEmail = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('service_7ay2tdk', 'template_z5dxop8', form.current, '8R2AlonC3RdZ-e1uD')
-            .then((result) => {
-                Swal.fire({
-                    title: "Good job!",
-                    text: "You clicked the button!",
-                    icon: "success"
-                });
-                e.target.reset();
-            }, (error) => {
-                console.log(error.text);
-            });
+        // emailjs.sendForm('service_7ay2tdk', 'template_z5dxop8', form.current, '8R2AlonC3RdZ-e1uD')
+        //     .then((result) => {
+        //         Swal.fire({
+        //             title: "Good job!",
+        //             text: "You clicked the button!",
+        //             icon: "success"
+        //         });
+        //         e.target.reset();
+        //     }, (error) => {
+        //         console.log(error.text);
+        //     });
     };
 
     return (
-        <div className='mt-16'>
+        <div className='py-10'>
             <section class="bg-gray-100 lg:mb-20">
                 <div data-aos="fade-right" class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-                    <TitleBar class="mt-20" title={'CONTACT WITH US'} />
                     <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
                         <div class="lg:col-span-2 lg:py-12">
                             <p class="max-w-xl text-lg text-[#0C356A]">
-                                At the same time, the fact that we are wholly owned and totally
-                                independent from manufacturer and other group control gives you
-                                confidence that we will only recommend what is right for you.
+                                We’ve been building Todoist for 16 years and 325 days. Rest assured that we’ll never sell out to the highest bidder.
                             </p>
 
-                            <div class="mt-8">
-                                <a href="" class="text-2xl font-bold text-[#0C356A]">
-                                    0151 475 4450
-                                </a>
-
-                                <address class="mt-2 not-italic text-[#0174BE]">
-                                    282 Kevin Brook, Imogeneborough, CA 58517
-                                </address>
+                            <div class="mt-8 text-[#0C356A] space-y-2">
+                                Jones Hopkins Tower 230, New Market Road <br />Rajshahi, Bangladesh
+                                <h1>01714760739</h1>
+                                <h1>algobot@gmail.com</h1>
                             </div>
                         </div>
 
@@ -164,12 +157,12 @@ const Contact = () => {
                 </div>
             </section>
 
-            <div data-aos="fade-right" className='my-10 flex flex-col justify-center items-center relative'>
+            <div data-aos="fade-right" className='my-10 mx-10 flex flex-col justify-center items-center relative'>
                 <hr className='w-3/5 bg-[#0C356A] h-[3px]' />
-                <h1 className='text-5xl font-bold text-center absolute -top-7 text-[#FFC436] bg-white px-4'>Stay With Us</h1>
+                <h1 className='text-5xl font-medium text-center absolute -top-7 text-red-500 bg-white px-4'>Stay With Us</h1>
             </div>
 
-            <div data-aos="fade-right" className='flex justify-center items-center container mx-auto mt-20'>
+            <div data-aos="fade-right" className='flex lg:px-10 px-4 justify-center items-center container mx-auto mt-20'>
                 <div className='container mx-auto mb-20 grid grid-cols-1 gap-10 lg:grid-cols-3 '>
                     <div className='space-y-2 flex flex-col justify-center items-center lg:justify-start lg:items-start'>
                         <h1 className='text-2xl font-bold text-[#0C356A]'>Quick Links</h1>

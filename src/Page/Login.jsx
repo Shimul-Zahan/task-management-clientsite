@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { MyAuthContext } from '../Context/AuthContext';
 // import Swal from 'sweetalert2'
 
@@ -8,6 +8,9 @@ const Login = () => {
     const { emailLogin, googleLogin } = useContext(MyAuthContext)
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // console.log(location.pathname);
 
     const handleLogin = e => {
         e.preventDefault();
@@ -17,7 +20,7 @@ const Login = () => {
 
         emailLogin(email, password)
             .then(res => {
-                navigate('/');
+                navigate('/dashboard/profile')
             })
             .catch(err => setError(err.message.slice(10, 100)))
     }
@@ -30,14 +33,14 @@ const Login = () => {
                     name: res.user?.displayName,
                     email: res.user?.email
                 }
-                console.log(userInfo);
+                navigate('/dashboard/profile')
             })
             .catch(err => setError(err.message.slice(10, 100)))
     }
 
 
     return (
-        <div className='min-h-screen bg-black bg-blend-overlay bg-opacity-80' style={{ backgroundImage: 'url("https://img.freepik.com/premium-vector/register-now-label-with-megaphone-badge-registration_349999-1466.jpg?w=1060")', backgroundSize: 'cover' }}>
+        <div className='min-h-screen py-20 bg-black bg-blend-overlay bg-opacity-80' style={{ backgroundImage: 'url("https://img.freepik.com/premium-vector/register-now-label-with-megaphone-badge-registration_349999-1466.jpg?w=1060")', backgroundSize: 'cover' }}>
             <section className=" dark:bg-gray-900">
                 <div className="flex flex-col lg:gap-20 lg:flex-row items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <div className="w-full shadow-xl text-white rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -48,11 +51,11 @@ const Login = () => {
                             <form onSubmit={handleLogin} className="space-y-4 md:space-y-6" action="#">
                                 <div>
                                     <label className="block mb-2 font-medium text-white dark:text-white">Your email</label>
-                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-white sm:text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-black sm:text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
                                 </div>
                                 <div>
                                     <label className="block mb-2 font-medium text-white dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-white sm:text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-black sm:text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                                 </div>
                                 {
                                     error && <div className='text-red-600 text-base'>{error}</div>

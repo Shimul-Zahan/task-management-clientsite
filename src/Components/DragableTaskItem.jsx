@@ -46,7 +46,7 @@ const DragableTaskItem = ({ task }) => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await axios.delete(`http://localhost:5000/delete/${id}`);
+                const res = await axios.delete(`https://task-management-backend-puce.vercel.app/delete/${id}`);
                 if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",
@@ -85,7 +85,7 @@ const DragableTaskItem = ({ task }) => {
             status: 'todo',
         }
         console.log("in the update modal", task)
-        const res = await axios.patch(`http://localhost:5000/edit-task/${id}`, task);
+        const res = await axios.patch(`https://task-management-backend-puce.vercel.app/edit-task/${id}`, task);
         if (res.data.modifiedCount > 0) {
             toast.success('Task edited successfully!!!', {
                 position: "top-right",

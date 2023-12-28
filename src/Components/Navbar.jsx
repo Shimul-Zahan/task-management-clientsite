@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
+import { MyAuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
 
     const [showMenu, setShowMenu] = useState(false);
+    const { user, logOut } = useContext(MyAuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
 
     const navitem = [
         {
@@ -17,7 +25,7 @@ const Navbar = () => {
             link: '/about'
         },
         {
-            navMenu: 'Contact',
+            navMenu: 'contact',
             link: '/contact'
         },
         {
@@ -47,8 +55,13 @@ const Navbar = () => {
                             </li>
                         )
                     }
+                    {
+                        user && <h1 className='text-red-500 font-bold'>{user?.displayName}</h1>
+                    }
                     <button>
-                        <Link to='/login' className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
+                        {
+                            user ? <button onClick={handleLogOut} className='bg-red-500 px-6 py-2 rounded-full'>Logout</button> : <Link to='/login' className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
+                        }
                     </button>
                 </div>
                 <div className={`absolute px-4 lg:hidden duration-700 top-10 list-none space-y-5 w-full bg-[#001D4F] py-6 ${showMenu? 'left-0':'left-[-100%]'}`}>
@@ -59,8 +72,13 @@ const Navbar = () => {
                             </li>
                         )
                     }
+                    {
+                        user && <h1 className='text-red-500 font-bold'>{user?.displayName}</h1>
+                    }
                     <button>
-                        <Link to='/login' className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
+                        {
+                            user ? <button onClick={handleLogOut} className='bg-red-500 px-6 py-2 rounded-full'>Logout</button> : <Link to='/login' className='bg-red-500 px-6 py-2 rounded-full'>Login</Link>
+                        }
                     </button>
                 </div>
             </div>
