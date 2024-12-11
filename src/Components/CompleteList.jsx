@@ -27,7 +27,7 @@ const CompleteList = ({ task, onRefetch }) => {
     ));
 
     const handleDrop = async (item) => {
-        const res = await axios.patch(`https://task-management-backend-puce.vercel.app/update/${item._id}?query=complete`);
+        const res = await axios.patch(`http://localhost:5000/update/${item._id}?query=complete`);
         if (res.data.modifiedCount > 0) {
             toast.success('Task reverse to complete', {
                 position: "top-right",

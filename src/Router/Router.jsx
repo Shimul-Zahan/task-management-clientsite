@@ -43,19 +43,23 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        element: <DashboardLayout />,
+        // element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/add-task',
-                element: <PrivateRoute><AddTask /></PrivateRoute>
+                element: <AddTask />
+                // element: <PrivateRoute><AddTask /></PrivateRoute>
             },
             {
                 path: '/dashboard/profile',
-                element: <PrivateRoute><Profile /></PrivateRoute>
+                element: <Profile />
+                // element: <PrivateRoute><Profile /></PrivateRoute>
             },
             {
                 path: '/dashboard/all-task',
-                element: <PrivateRoute><SeePreviousTask /></PrivateRoute>
+                element: <SeePreviousTask />
+                // element: <PrivateRoute><SeePreviousTask /></PrivateRoute>
             },
         ]
     }

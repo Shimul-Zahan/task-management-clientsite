@@ -8,6 +8,8 @@ const AddTask = () => {
 
     const { user } = useContext(MyAuthContext);
 
+    // http://localhost:5000/
+
     const {
         register,
         handleSubmit,
@@ -22,7 +24,7 @@ const AddTask = () => {
             status: 'todo',
         }
         // console.log(task)
-        const res = await axios.post('https://task-management-backend-puce.vercel.app/add-task', task);
+        const res = await axios.post('http://localhost:5000/add-task', task);
         if (res.data) {
             toast.success('Success Add to task', {
                 position: "top-right",
